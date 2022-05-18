@@ -20,7 +20,7 @@ const char* password = "";
 #define DHTPIN 4     
 
 
-#define DHTTYPE    DHT11
+#define DHTTYPE DHT11
 
 DHT dht(DHTPIN, DHTTYPE);
 
