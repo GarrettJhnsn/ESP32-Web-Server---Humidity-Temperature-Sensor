@@ -13,15 +13,14 @@
 Adafruit_SSD1306 display(SCREEN_WIDTH, SCREEN_HEIGHT, &Wire, -1);
 
 // Replace with your network credentials
-const char* ssid = "CheeseyNudBuns";
-const char* password = "chatta95!!";
+const char* ssid = "";
+const char* password = "";
 
-#define DHTPIN 4     // Digital pin connected to the DHT sensor
+// Digital pin connected to the DHT sensor
+#define DHTPIN 4     
 
-// Uncomment the type of sensor in use:
+
 #define DHTTYPE    DHT11     // DHT 11
-//#define DHTTYPE    DHT22     // DHT 22 (AM2302)
-//#define DHTTYPE    DHT21     // DHT 21 (AM2301)
 
 DHT dht(DHTPIN, DHTTYPE);
 
@@ -29,10 +28,6 @@ DHT dht(DHTPIN, DHTTYPE);
 AsyncWebServer server(80);
 
 String readDHTTemperature() {
-  // Sensor readings may also be up to 2 seconds 'old' (its a very slow sensor)
-  // Read temperature as Celsius (the default)
-  //float t = dht.readTemperature();
-  // Read temperature as Fahrenheit (isFahrenheit = true)
   float t = dht.readTemperature(true);
   // Check if any reads failed and exit early (to try again).
   if (isnan(t)) {    
@@ -46,7 +41,6 @@ String readDHTTemperature() {
 }
 
 String readDHTHumidity() {
-  // Sensor readings may also be up to 2 seconds 'old' (its a very slow sensor)
   float h = dht.readHumidity();
   if (isnan(h)) {
     Serial.println("Failed to read from DHT sensor!");
@@ -120,7 +114,6 @@ setInterval(function ( ) {
 
 // Replaces placeholder with DHT values
 String processor(const String& var){
-  //Serial.println(var);
   if(var == "TEMPERATURE"){
     return readDHTTemperature();
   }
@@ -172,7 +165,8 @@ void loop(){
   float h = dht.readHumidity();
   display.clearDisplay();
   display.setTextColor(WHITE);
-  
+
+  //Displays Temperature On OLED Display Loop
   display.setTextSize(1);
   display.setCursor(0,0);
   display.print("Temperature: ");
@@ -181,11 +175,13 @@ void loop(){
   display.print(t);
   display.print(" ");
   display.setTextSize(1);
+  //Uses Character Set CP437 [248 = Degree Symbol]
   display.cp437(true);
   display.write(248);
   display.setTextSize(2);
   display.print("F");
 
+  //Displays Humidity On OLED Display Loop
   display.setTextSize(1);
   display.setCursor(0, 35);
   display.print("Humidity: ");
@@ -195,8 +191,4 @@ void loop(){
   display.print(" %"); 
   
   display.display();
-
-  
-
-  
 }
