@@ -1,4 +1,4 @@
-# ESP32-Web-Server---Humidity-Temperature-Sensor-
+# ESP32-Web-Server---Humidity-Temperature-Sensor
 ESP32 Web Server hosting data in real time coming from a DHT11 Humidty / Temperature sensor .
 ![image](https://user-images.githubusercontent.com/45772450/169113755-8d5410a6-2bce-4c88-bcee-b6750e4df643.png)
 
