@@ -12,7 +12,7 @@
 
 Adafruit_SSD1306 display(SCREEN_WIDTH, SCREEN_HEIGHT, &Wire, -1);
 
-// Replace with your network credentials
+// Your network credentials
 const char* ssid = "";
 const char* password = "";
 
@@ -20,7 +20,7 @@ const char* password = "";
 #define DHTPIN 4     
 
 
-#define DHTTYPE    DHT11     // DHT 11
+#define DHTTYPE    DHT11
 
 DHT dht(DHTPIN, DHTTYPE);
 
